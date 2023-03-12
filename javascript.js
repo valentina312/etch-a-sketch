@@ -1,7 +1,6 @@
 const button = document.querySelector('button');
-var sizeInput;
 
-function changeGrid() {
+function askSize() {
     // Validating user input: answer must be a number less than 100
     let keepAsking = true;
     while (keepAsking) {
@@ -14,10 +13,35 @@ function changeGrid() {
             keepAsking = false;
         }
     }
+    deleteGrid();
+    createGrid(parseInt(answer));
 }
 
+function createGrid(answer) {
+    var gridContainer = document.getElementById('grid-container')
+    let defaultSize = 16;
+    if (answer) {
+        defaultSize = answer
+    }
+    let boxWidth = 960 / defaultSize;
+    for (let i = 0; i < defaultSize**2; i++) {
+        var newDiv = document.createElement('div');
+        newDiv.classList.add('box')
+        newDiv.style.minWidth = boxWidth;
+        newDiv.style.minHeight = boxWidth;
+        gridContainer.appendChild(newDiv);            
+    }
+}
 
-button.addEventListener('click', changeGrid);
+function deleteGrid() {
+    let boxes = document.querySelectorAll('div.box');
+    for (let i = 0; i < boxes.length; i++) {
+        boxes[i].remove();
+    }
+}
+createGrid(16);
+button.addEventListener('click', askSize);
+
 
 
 
