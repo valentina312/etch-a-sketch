@@ -1,6 +1,12 @@
+// Buttons selectors and variables
 const sizeButton = document.querySelector('.change-size');
 const clearButton = document.querySelector('.clear-draw')
+var rainbowButton = document.querySelector('.rainbow-button');
+var darkButton = document.querySelector('.dark-button');
 
+var startingMode = 'black';
+
+// Functions
 function askSize() {
     // Validating user input: answer must be a number less than 100
     let keepAsking = true;
@@ -35,6 +41,7 @@ function createGrid(answer) {
     }
 }
 
+
 function deleteGrid() {
     let boxes = document.querySelectorAll('div.box');
     for (let i = 0; i < boxes.length; i++) {
@@ -43,12 +50,28 @@ function deleteGrid() {
 }
 
 
+function chooseRandomRgb() {
+    var value = Math.floor(Math.random() * (256))
+    return value;
+}
+
+
 function draw() {
     let boxGrid = document.querySelectorAll('.box');
+    
     for (let i = 0; i < boxGrid.length; i++) {
-        boxGrid[i].addEventListener('mouseover', () => {
-            boxGrid[i].style.backgroundColor = 'darkgray';
-        })
+        boxGrid[i].addEventListener('mouseover', colorChoice)
+    }
+}
+
+function colorChoice(e) {
+    switch (startingMode) {
+      case "rainbow":
+        e.target.style.backgroundColor = `rgb(${chooseRandomRgb()}, ${chooseRandomRgb()}, ${chooseRandomRgb()})`;
+        break;
+      case "black":
+        e.target.style.backgroundColor = 'darkgray';
+        break;
     }
 }
 
@@ -60,11 +83,22 @@ function clearDraw() {
 }
 
 
-createGrid(16);
+
+
+// Event Listeners
 sizeButton.addEventListener('click', askSize);
 clearButton.addEventListener('click', clearDraw);
+
+rainbowButton.addEventListener('click', function() {
+    startingMode = 'rainbow';
+}
+)
+
+darkButton.addEventListener('click', function() {
+    startingMode = 'black';
+}
+)
+
+// Starting
+createGrid(16);
 draw();
-
-
-
-
