@@ -23,12 +23,12 @@ function createGrid(answer) {
     if (answer) {
         defaultSize = answer
     }
-    let boxWidth = 960 / defaultSize;
+    var boxWidth = 480 / defaultSize;
     for (let i = 0; i < defaultSize**2; i++) {
         var newDiv = document.createElement('div');
         newDiv.classList.add('box')
-        newDiv.style.minWidth = boxWidth;
-        newDiv.style.minHeight = boxWidth;
+        newDiv.style.minWidth = `${boxWidth}px`;
+        newDiv.style.minHeight = `${boxWidth}px`;
         gridContainer.appendChild(newDiv);            
     }
 }
