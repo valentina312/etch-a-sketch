@@ -1,4 +1,5 @@
-const button = document.querySelector('button');
+const sizeButton = document.querySelector('.change-size');
+const clearButton = document.querySelector('.clear-draw')
 
 function askSize() {
     // Validating user input: answer must be a number less than 100
@@ -15,6 +16,7 @@ function askSize() {
     }
     deleteGrid();
     createGrid(parseInt(answer));
+    draw();
 }
 
 function createGrid(answer) {
@@ -39,8 +41,29 @@ function deleteGrid() {
         boxes[i].remove();
     }
 }
+
+
+function draw() {
+    let boxGrid = document.querySelectorAll('.box');
+    for (let i = 0; i < boxGrid.length; i++) {
+        boxGrid[i].addEventListener('mouseover', () => {
+            boxGrid[i].style.backgroundColor = 'darkgray';
+        })
+    }
+}
+
+function clearDraw() {
+    let boxGrid = document.querySelectorAll('.box');
+    for (let i = 0; i < boxGrid.length; i++) {
+            boxGrid[i].style.backgroundColor = '';
+        }
+}
+
+
 createGrid(16);
-button.addEventListener('click', askSize);
+sizeButton.addEventListener('click', askSize);
+clearButton.addEventListener('click', clearDraw);
+draw();
 
 
 
