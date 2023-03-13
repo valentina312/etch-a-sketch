@@ -6,4 +6,4 @@ Insert a button at the top of the page that prompts the user for a size, and cha
 Ver 1.0
 In this version I learned to watch very carefully for typos, and that it's best to copy paste the class and id in selectors.
 I also learned more about event listeners and flexbox.
-The style is very simple, I'll come back in the future to make it more visually appealing
+The style is very simple, I'll come back in the future to make it more visually appealing and to change the "sketching" from hover to click+hover
